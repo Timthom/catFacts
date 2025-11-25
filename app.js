@@ -12,6 +12,8 @@ buttonClicked.addEventListener('click', function (event) {
     getKanyeQuotes();
     //Här anropar vi våran knappanimering
     buttonAnimation();
+    //Här kallar vi på räknarfunktion
+    increment();
 
 });
 
@@ -88,3 +90,13 @@ function buttonAnimation() {
         activeButton.classList.remove("pressed");
     }, 100);
 }
+
+/**
+ * Håller reda på antaler knapptryckningar
+ */
+let count = 2;
+function increment() {
+    document.querySelector(".counting").innerHTML =
+        "You have read " + count + " dog and cat facts today!<br />" + "And also " + count/2 + " silly Kanye qoutes.";
+    count += 2;
+}//End increment();
