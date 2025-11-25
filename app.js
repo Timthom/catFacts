@@ -8,6 +8,10 @@ buttonClicked.addEventListener('click', function (event) {
     getRandomCatFacts();
     //Vi anropar funktionen för att hämta hundfakta
     getRandomDogFacts();
+    //Vi anropar functionen för att hämta KanyeQuotes
+    getKanyeQuotes();
+    //Här anropar vi våran knappanimering
+    buttonAnimation();
 
 });
 
@@ -52,4 +56,35 @@ function getRandomDogFacts() {
             document.querySelector(".dogFact").innerHTML =
               "🐺 " + "Sorry, vi kan inte hämta data just nu. Försök senare!";
     })
+}
+
+// Här är funktionen getKanyeQuotes
+function getKanyeQuotes() {
+
+    fetch("https://api.kanye.rest") 
+        .then(function (response) {
+            return response.json();
+    })
+        .then((response) => {
+            let dataK = response;
+            console.log(dataK);
+            document.querySelector(".kayneQoutes").innerHTML =
+              'Kanye says: "' + dataK.quote + '" 🙄';
+        })
+        .catch(function (error) {
+            console.log("Error: " + error);
+            document.querySelector(".kayneQoutes").innerHTML =
+              "Kayne is out! Try later... 😵";
+    })
+}
+
+//Knappanimeringsfunktion
+
+function buttonAnimation() {
+    let activeButton = document.querySelector("#getNewCatFact");
+    activeButton.classList.add("pressed");
+
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
